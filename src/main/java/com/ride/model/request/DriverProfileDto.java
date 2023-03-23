@@ -6,7 +6,9 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.validator.constraints.Range;
 
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
@@ -22,6 +24,8 @@ public class DriverProfileDto {
     @NotBlank(message = "name is mandatory")
     private String name;
 
+    @Email(message = "Invalid email")
+    @Range(min= 4, max= 15)
     @NotBlank(message = "email id is mandatory")
     private String emailId;
 

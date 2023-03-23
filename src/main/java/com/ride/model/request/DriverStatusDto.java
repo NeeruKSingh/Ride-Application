@@ -5,7 +5,9 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.validator.constraints.Range;
 
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
@@ -19,7 +21,8 @@ public class DriverStatusDto  {
     @NotNull
     private Integer id;
 
+    @Email
     @NotBlank(message = "driver status is mandatory")
-    private String status;  //TODO check validate enum in reqeust
+    private String status;
 
 }

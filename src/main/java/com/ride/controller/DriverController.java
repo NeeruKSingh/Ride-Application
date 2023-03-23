@@ -8,7 +8,9 @@ import com.ride.exception.NotFoundException;
 import com.ride.model.request.DriverProfileDto;
 import com.ride.model.request.DriverStatusDto;
 import com.ride.model.request.LoginRequest;
+import com.ride.model.response.ErrrorBaseResponse;
 import com.ride.model.response.LoginResponse;
+import com.ride.model.response.SuccessBaseResponse;
 import com.ride.service.IDriverService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -41,7 +43,9 @@ public class DriverController {
     @RequestMapping(value = "/ready", method = RequestMethod.POST)
     public ResponseEntity markActiveStatus(@Valid @RequestBody DriverStatusDto driverStatus ) throws NotFoundException {
         driverService.markStatus(driverStatus);
-        return ResponseEntity.ok(ResponseCodeMapping.SUCCESS.getMessage());
+        return ResponseEntity.ok(SuccessBaseResponse.builder()
+                .code(ResponseCodeMapping.SUCCESS.getCode())
+                .message(ResponseCodeMapping.SUCCESS.getMessage()).build());
     }
 
     @RequestMapping(value = "/profile/{id}", method = RequestMethod.GET)

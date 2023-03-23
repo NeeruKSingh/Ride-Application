@@ -13133,7 +13133,7 @@ javax.persistence.TransactionRequiredException: Executing an update/delete query
 2023-03-23 04:05:12.006 IST -APP- 
 				0250657E1B5049A980BE6633FC721721 [http-nio-8080-exec-2] WARN o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver.doResolveHandlerMethodException-419 - Failure in @ExceptionHandler protected org.springframework.http.ResponseEntity<java.lang.Object> com.ride.exception.handler.ExceptionHandler.handleServiceException(java.lang.Exception,org.springframework.web.context.request.WebRequest)
 				
-java.lang.ClassCastException: class org.springframework.dao.DataIntegrityViolationException cannot be cast to class com.ride.model.response.ErrorResponse (org.springframework.dao.DataIntegrityViolationException and com.ride.model.response.ErrorResponse are in unnamed module of loader 'app')
+java.lang.ClassCastException: class org.springframework.dao.DataIntegrityViolationException cannot be cast to class com.ride.model.response.ErrrorBaseResponse (org.springframework.dao.DataIntegrityViolationException and com.ride.model.response.ErrrorBaseResponse are in unnamed module of loader 'app')
 	at com.ride.exception.handler.ExceptionHandler.handleServiceException(ExceptionHandler.java:15)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
@@ -13455,7 +13455,7 @@ java.sql.SQLIntegrityConstraintViolationException: Duplicate entry 'ns@gmail.com
 2023-03-23 12:41:17.697 IST -APP- 
 				C29D93955F0F4D98B7826B2113B3A69A [http-nio-8080-exec-3] WARN o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver.doResolveHandlerMethodException-419 - Failure in @ExceptionHandler protected org.springframework.http.ResponseEntity<java.lang.Object> com.ride.exception.handler.ExceptionHandler.handleServiceException(java.lang.Exception,org.springframework.web.context.request.WebRequest)
 				
-java.lang.ClassCastException: class com.ride.exception.NotFoundException cannot be cast to class com.ride.model.response.ErrorResponse (com.ride.exception.NotFoundException and com.ride.model.response.ErrorResponse are in unnamed module of loader 'app')
+java.lang.ClassCastException: class com.ride.exception.NotFoundException cannot be cast to class com.ride.model.response.ErrrorBaseResponse (com.ride.exception.NotFoundException and com.ride.model.response.ErrrorBaseResponse are in unnamed module of loader 'app')
 	at com.ride.exception.handler.ExceptionHandler.handleServiceException(ExceptionHandler.java:15)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
@@ -13695,7 +13695,7 @@ com.ride.exception.NotFoundException: Status not found
 2023-03-23 12:47:10.107 IST -APP- 
 				ADAA4715EC6F43CC907284BF144199E5 [http-nio-8080-exec-1] WARN o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver.doResolveHandlerMethodException-419 - Failure in @ExceptionHandler protected org.springframework.http.ResponseEntity<java.lang.Object> com.ride.exception.handler.ExceptionHandler.handleServiceException(java.lang.Exception,org.springframework.web.context.request.WebRequest)
 				
-java.lang.ClassCastException: class org.springframework.dao.DataIntegrityViolationException cannot be cast to class com.ride.model.response.ErrorResponse (org.springframework.dao.DataIntegrityViolationException and com.ride.model.response.ErrorResponse are in unnamed module of loader 'app')
+java.lang.ClassCastException: class org.springframework.dao.DataIntegrityViolationException cannot be cast to class com.ride.model.response.ErrrorBaseResponse (org.springframework.dao.DataIntegrityViolationException and com.ride.model.response.ErrrorBaseResponse are in unnamed module of loader 'app')
 	at com.ride.exception.handler.ExceptionHandler.handleServiceException(ExceptionHandler.java:15)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
@@ -13934,7 +13934,7 @@ java.sql.SQLIntegrityConstraintViolationException: Duplicate entry 'nss@gmail.co
 2023-03-23 12:49:33.819 IST -APP- 
 				EA081B765ED445C5B6EF0DAE3D4B4EB5 [http-nio-8080-exec-7] WARN o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver.doResolveHandlerMethodException-419 - Failure in @ExceptionHandler protected org.springframework.http.ResponseEntity<java.lang.Object> com.ride.exception.handler.ExceptionHandler.handleServiceException(java.lang.Exception,org.springframework.web.context.request.WebRequest)
 				
-java.lang.ClassCastException: class com.ride.exception.NotFoundException cannot be cast to class com.ride.model.response.ErrorResponse (com.ride.exception.NotFoundException and com.ride.model.response.ErrorResponse are in unnamed module of loader 'app')
+java.lang.ClassCastException: class com.ride.exception.NotFoundException cannot be cast to class com.ride.model.response.ErrrorBaseResponse (com.ride.exception.NotFoundException and com.ride.model.response.ErrrorBaseResponse are in unnamed module of loader 'app')
 	at com.ride.exception.handler.ExceptionHandler.handleServiceException(ExceptionHandler.java:15)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
@@ -14103,7 +14103,7 @@ com.ride.exception.NotFoundException: Status not found
 2023-03-23 12:53:23.030 IST -APP- 
 				B18725C66BF24DD4AD5B1AA95FB74364 [http-nio-8080-exec-1] WARN o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver.doResolveHandlerMethodException-419 - Failure in @ExceptionHandler protected org.springframework.http.ResponseEntity<java.lang.Object> com.ride.exception.handler.ExceptionHandler.handleServiceException(java.lang.Exception,org.springframework.web.context.request.WebRequest)
 				
-java.lang.ClassCastException: class com.ride.exception.NotFoundException cannot be cast to class com.ride.model.response.ErrorResponse (com.ride.exception.NotFoundException and com.ride.model.response.ErrorResponse are in unnamed module of loader 'app')
+java.lang.ClassCastException: class com.ride.exception.NotFoundException cannot be cast to class com.ride.model.response.ErrrorBaseResponse (com.ride.exception.NotFoundException and com.ride.model.response.ErrrorBaseResponse are in unnamed module of loader 'app')
 	at com.ride.exception.handler.ExceptionHandler.handleServiceException(ExceptionHandler.java:15)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
@@ -14358,7 +14358,7 @@ com.ride.exception.NotFoundException: Status not found
 2023-03-23 12:55:29.624 IST -APP- 
 				78918A02C0484DBABB03AADC79645758 [http-nio-8080-exec-3] WARN o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver.doResolveHandlerMethodException-419 - Failure in @ExceptionHandler protected org.springframework.http.ResponseEntity<java.lang.Object> com.ride.exception.handler.ExceptionHandler.handleServiceException(java.lang.Exception,org.springframework.web.context.request.WebRequest)
 				
-java.lang.ClassCastException: class com.ride.exception.NotFoundException cannot be cast to class com.ride.model.response.ErrorResponse (com.ride.exception.NotFoundException and com.ride.model.response.ErrorResponse are in unnamed module of loader 'app')
+java.lang.ClassCastException: class com.ride.exception.NotFoundException cannot be cast to class com.ride.model.response.ErrrorBaseResponse (com.ride.exception.NotFoundException and com.ride.model.response.ErrrorBaseResponse are in unnamed module of loader 'app')
 	at com.ride.exception.handler.ExceptionHandler.handleServiceException(ExceptionHandler.java:15)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
@@ -15391,7 +15391,7 @@ com.ride.exception.NotFoundException: Status not found
 2023-03-23 13:20:39.613 IST -APP- 
 				C8D304EB3F9B4B448967BFF8CEBCDD82 [http-nio-8080-exec-4] WARN o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver.doResolveHandlerMethodException-419 - Failure in @ExceptionHandler protected org.springframework.http.ResponseEntity<java.lang.Object> com.ride.exception.handler.ExceptionHandler.handleServiceException(java.lang.Exception,org.springframework.web.context.request.WebRequest)
 				
-java.lang.ClassCastException: class java.lang.NullPointerException cannot be cast to class com.ride.model.response.ErrorResponse (java.lang.NullPointerException is in module java.base of loader 'bootstrap'; com.ride.model.response.ErrorResponse is in unnamed module of loader 'app')
+java.lang.ClassCastException: class java.lang.NullPointerException cannot be cast to class com.ride.model.response.ErrrorBaseResponse (java.lang.NullPointerException is in module java.base of loader 'bootstrap'; com.ride.model.response.ErrrorBaseResponse is in unnamed module of loader 'app')
 	at com.ride.exception.handler.ExceptionHandler.handleServiceException(ExceptionHandler.java:15)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)

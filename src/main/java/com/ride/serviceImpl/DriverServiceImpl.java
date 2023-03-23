@@ -1,6 +1,7 @@
 package com.ride.serviceImpl;
 
 
+import com.ride.constants.Constants;
 import com.ride.constants.DriverStatus;
 import com.ride.constants.ResponseCodeMapping;
 import com.ride.entity.DriverProfile;
@@ -118,6 +119,7 @@ public class DriverServiceImpl implements IDriverService {
                 .mobileNo(userDetails.getMobileNo())
                 .isOnboarded(driverProfile.isOnboarded())
                 .status(driverProfile.getStatus())
+                .userId(userDetails.getId())
                 .vehicleDetails(VehicleDetailsDto.builder()
                         .vehicleModel(driverProfile.getVehicleDetails().getVehicleModel())
                         .memberCapacity(driverProfile.getVehicleDetails().getMemberCapacity())
@@ -136,7 +138,7 @@ public class DriverServiceImpl implements IDriverService {
            throw new NotFoundException(ResponseCodeMapping.NOT_FOUND.getCode(), ResponseCodeMapping.NOT_FOUND.getMessage());
         }
       DriverProfile driverProfile = driverRepository.getById(driverStatus.getId());
-        if(!driverProfile.isOnboarded()){
+        if(ObjectUtils.isEmpty(driverProfile) || !driverProfile.isOnboarded()){
             throw new NotFoundException(ResponseCodeMapping.ON_BOARDING_INCOMPLETE.getCode(),ResponseCodeMapping.ON_BOARDING_INCOMPLETE.getMessage());
         }
         log.info("Driver status update for id {} ,status {}  ",driverStatus.getId(),driverStatus.getStatus());
@@ -155,24 +157,23 @@ public class DriverServiceImpl implements IDriverService {
 
     private LoginResponse validateUser(LoginRequest login) throws NotFoundException {
         String encryptedPassword = EncryptionUtil.getEncryptedPwd(login.getPassword());
-        log.info("Check User for email {} and pwd {} ",login.getEmailId(),encryptedPassword);
         UserDetails userDetails = userService.findByEmailAndPassword(login.getEmailId(),encryptedPassword);
         if(ObjectUtils.isEmpty(userDetails)){
             log.error("User not found for email {} and pwd {} ",login.getEmailId(),encryptedPassword);
             throw new NotFoundException(ResponseCodeMapping.NOT_FOUND.getCode(), ResponseCodeMapping.NOT_FOUND.getMessage());
         }
-        log.info("Check driver for userid {}  ",userDetails.getId());
         DriverProfile driverProfile = driverRepository.findByUserId(userDetails.getId());
         if(ObjectUtils.isEmpty(driverProfile)){
             log.error("Driver profile not found for email {} ",login.getEmailId());
             throw new NotFoundException(ResponseCodeMapping.DETAILS_NOT_FOUND.getCode(),ResponseCodeMapping.DETAILS_NOT_FOUND.getMessage());
         }
-        log.info("Login generate token for userid {}  ",userDetails.getId());
         String token = TokenUtil.generateToken();
-        log.info("update token {} for userid {}  ",token.substring(0,9),userDetails.getId());
-        userService.updateToken(userDetails.getId(),token.substring(0,9));
+        log.info("update token {} for userid {}  ",token.substring(Constants.TOKEN_START_INDEX,Constants.TOKEN_END_INDEX),userDetails.getId());
+        userService.updateToken(userDetails.getId(),token.substring(Constants.TOKEN_START_INDEX,Constants.TOKEN_END_INDEX));
         DriverProfileDto driverProfileDto=  DriverProfileDto.builder()
                 .name(userDetails.getName())
+                .userId(userDetails.getId())
+                .emailId(userDetails.getEmailId())
                 .id(driverProfile.getId()).build();
        return LoginResponse.builder().token(token)
                 .driverProfileDto(driverProfileDto).build();

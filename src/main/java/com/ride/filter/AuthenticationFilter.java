@@ -1,6 +1,5 @@
 package com.ride.filter;
 
-import com.ride.constants.Constants;
 import com.ride.constants.ResponseCodeMapping;
 import com.ride.entity.UserDetails;
 import com.ride.exception.TokenMissingException;
@@ -11,15 +10,15 @@ import org.slf4j.MDC;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.util.ObjectUtils;
+import org.springframework.util.StringUtils;
 import org.springframework.web.filter.GenericFilterBean;
+import org.springframework.web.filter.OncePerRequestFilter;
 
-import javax.servlet.FilterChain;
-import javax.servlet.ServletException;
-import javax.servlet.ServletRequest;
-import javax.servlet.ServletResponse;
+import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.Enumeration;
 import java.util.UUID;
 
 @Component
@@ -35,30 +34,32 @@ public class AuthenticationFilter extends GenericFilterBean {
         HttpServletRequest req = (HttpServletRequest) servletRequest;
         String path = req.getServletPath();
         final String token = extractToken(req);
-        MDC.put(Constants.MDC_ID, token);
+        MDC.put("commonRequestIdentifier", token);
 
-        if(path.contains(Constants.SIGNUP_URL) || path.contains(Constants.LOGIN_URL)){
+        //Enhancement- Different types of authenication then make use of factory design pattern
+
+        if(path.contains("/signup") || path.contains("/login")){
             log.info("Signup or Login authentication is not required");
             filterChain.doFilter(servletRequest, servletResponse);
         }else {
-            String key = req.getHeader(Constants.HEADER_AUTHORIZATION) == null ? "" : req.getHeader(Constants.HEADER_AUTHORIZATION);
-            log.info("Authorization key: " + key);
-            if (key == null || !key.startsWith(Constants.HEADER_AUTH_PREFIX)) {
+            String key = req.getHeader("Authorization") == null ? "" : req.getHeader("Authorization");
+            log.info("Trying key: " + key);
+            if (key == null || !key.startsWith("Bearer ")) {  //TOD0
                 throw new TokenMissingException(ResponseCodeMapping.TOKEN_NOT_FOUND.getCode(), ResponseCodeMapping.TOKEN_NOT_FOUND.getMessage());
             }
 
-            String authToken = key.substring(7);
+            String authToken = key.substring(7); //TODO remove hardcoded into constant file
 
             /**
              * Authenticate Token- valid or not, expired or not - assumptions for simplicity
              */
 
-            UserDetails userDetails = userService.findByAuthToken(authToken.substring(Constants.TOKEN_START_INDEX,Constants.TOKEN_END_INDEX));
+            UserDetails userDetails = userService.findByAuthToken(authToken.substring(0,9));
             if (!ObjectUtils.isEmpty(userDetails)) {
                 filterChain.doFilter(servletRequest, servletResponse);
             } else {
                 HttpServletResponse resp = (HttpServletResponse) servletResponse;
-                String error = ResponseCodeMapping.TOKEN_NOT_FOUND.getMessage();
+                String error = "Invalid Token";
                 resp.reset();
                 resp.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
                 servletResponse.setContentLength(error.length());
